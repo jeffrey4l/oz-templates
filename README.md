@@ -2,7 +2,7 @@
 
 ## Usage
 
-The iso is located in `/data/isos/`. The isos' name are conversionally.
+The isos are located in `/data/isos/`. The isos' name are conversionally.
 Including
 
 * CentOS-6.3-x86_64-bin-DVD1.iso
