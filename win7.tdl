@@ -1,0 +1,22 @@
+<!-- An example that shows how to do a basic install of Windows 2000
+     i386 using the ISO type install.  Note that Windows requires a
+     key, so Oz will fail if the <key> element is missing.
+-->
+<template>
+  <name>win7</name>
+  <os>
+    <name>Windows</name>
+    <version>7</version>
+    <arch>x86_64</arch>
+    <install type='iso'>
+      <iso>file:///data/isos/cn_win7_x86-64.iso</iso>
+    </install>
+    <key>MHFPT-8C8M2-V9488-FGM44-2C9T3</key>
+  </os>
+  <disk>
+      <size>40</size>
+  </disk>
+  <description>Windows 7</description>
+</template>
+<!-- vim:ft=xml
+-->

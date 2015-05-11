@@ -1,0 +1,105 @@
+<template>
+    <name>centos63_x86_64</name>
+    <description>CentOS 6.3 x86_64 template</description>
+    <os>
+        <name>CentOS-6</name>
+        <version>0</version>
+        <arch>x86_64</arch>
+        <rootpw>infohold</rootpw>
+        <install type='iso'>
+            <iso>file:///data/isos/CentOS-6.3-x86_64-bin-DVD1.iso</iso>
+        </install>
+    </os>
+    <disk>
+        <size>40</size>
+    </disk>
+    <repositories>
+        <repository name='epel-6'>
+            <url>http://mirrors.aliyun.com/epel/6/x86_64/</url>
+            <signed>no</signed>
+        </repository>
+    </repositories>
+    <packages>
+        <package name='nss'/>
+        <package name='acpid'/>
+        <package name='cloud-init'/>
+        <package name='cloud-utils-growpart'/>
+    </packages>
+    <files>
+        <file name="/etc/sysconfig/network-scripts/ifcfg-eth0">
+DEVICE="eth0"
+BOOTPROTO="dhcp"
+ONBOOT="yes"
+PERSISTENT_DHCLIENT=1
+    </file>
+    <file name="/etc/sysconfig/network">
+NETWORKING=yes
+HOSTNAME=localhost.localdomain
+NOZEROCONF=yes
+    </file>
+    <file name="/etc/cloud/cloud.cfg">
+<![CDATA[
+disable_root: false
+ssh_pwauth: 1
+resize_rootfs: 1
+
+cloud_init_modules:
+  - migrator
+  - bootcmd
+  - write-files
+  - growpart
+  - resizefs
+  - set_hostname
+  - update_hostname
+  - update_etc_hosts
+  - rsyslog
+  - users-groups
+  - ssh
+
+cloud_config_modules:
+  - mounts
+  - locale
+  - set-passwords
+  - yum-add-repo
+  - package-update-upgrade-install
+  - timezone
+  - puppet
+  - chef
+  - salt-minion
+  - mcollective
+  - disable-ec2-metadata
+  - runcmd
+
+cloud_final_modules:
+  - rightscale_userdata
+  - scripts-per-once
+  - scripts-per-boot
+  - scripts-per-instance
+  - scripts-user
+  - ssh-authkey-fingerprints
+  - keys-to-console
+  - phone-home
+  - final-message
+
+growpart:
+  mode: auto
+  devices: ['/']
+  ignore_growroot_disabled: false
+]]>
+        </file>
+    </files>
+    <commands>
+        <command name='service'>
+chkconfig acpid on
+        </command>
+       <command name='network'>
+<![CDATA[
+# FIXME: (jeffrey4l) this will raise error when system boot
+rm -rf /etc/udev/rules.d/70-persistent-net.rules
+rm -rf /lib/udev/rules.d/75-persistent-net-generator.rules
+]]>
+       </command>
+    </commands>
+</template>
+<!-- vim:ft=xml
+-->

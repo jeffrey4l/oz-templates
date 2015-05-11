@@ -1,0 +1,78 @@
+<template>
+    <name>ubuntu14.04.1</name>
+    <os>
+        <name>Ubuntu</name>
+        <version>14.04</version>
+        <arch>x86_64</arch>
+        <install type='iso'>
+            <iso>file:///data/isos/ubuntu-14.04.1-server-amd64.iso</iso>
+        </install>
+    </os>
+    <disk>
+        <size>40</size>
+    </disk>
+    <description>Ubuntu 14.04.1</description>
+    <packages>
+        <package name="cloud-init"/>
+        <package name="cloud-initramfs-growroot"/>
+    </packages>
+    <files>
+        <file name="/etc/cloud/cloud.cfg">
+<![CDATA[
+disable_root: false
+ssh_pwauth: 1
+resize_rootfs: 1
+
+cloud_init_modules:
+  - migrator
+  - bootcmd
+  - write-files
+  - growpart
+  - resizefs
+  - set_hostname
+  - update_hostname
+  - update_etc_hosts
+  - rsyslog
+  - users-groups
+  - ssh
+
+cloud_config_modules:
+  - mounts
+  - locale
+  - set-passwords
+  - yum-add-repo
+  - package-update-upgrade-install
+  - timezone
+  - puppet
+  - chef
+  - salt-minion
+  - mcollective
+  - disable-ec2-metadata
+  - runcmd
+
+cloud_final_modules:
+  - rightscale_userdata
+  - scripts-per-once
+  - scripts-per-boot
+  - scripts-per-instance
+  - scripts-user
+  - ssh-authkey-fingerprints
+  - keys-to-console
+  - phone-home
+  - final-message
+
+growpart:
+  mode: auto
+  devices: ['/']
+  ignore_growroot_disabled: false
+]]>
+        </file>
+    </files>
+    <commands>
+        <command name="grub">
+sed -i 's/\(GRUB_CMDLINE_LINUX_DEFAULT=\).*/\1\"console=tty0 console=ttyS0,115200\"/g' /etc/default/grub
+        </command>
+    </commands>
+</template>
+<!-- vim:ft=xml
+-->
