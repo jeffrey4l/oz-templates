@@ -27,6 +27,6 @@ rhel63: pre
 ubuntu14.04: pre
 	@echo "Start Make Ubuntu 14.04 Image" | tee -a ${LOG}/$@.log
 	${OZ_INSTALL} -a ubuntu14.04.preseed ubuntu14.04_x86-64.tdl -x ubuntu1404.xml ${OPTS} >> ${LOG}/$@.log 2>&1
-	@echo "Create Ubuntu 14.04 Image Successfully." | tee a ${LOG}/$@.log
+	@echo "Create Ubuntu 14.04 Image Successfully." | tee -a ${LOG}/$@.log
 
 
