@@ -14,7 +14,8 @@ bootloader --location=mbr --append=" console=tty0 console=ttyS0,115200"
 zerombr yes
 clearpart --all
 
-part /boot --fstype ext4 --size=200
+part /boot --fstype ext4 --size=512
+part swap --size=2048
 part / --fstype ext4 --grow --size=1024
 reboot
 
