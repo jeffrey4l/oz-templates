@@ -94,10 +94,12 @@ chkconfig acpid on
         </command>
        <command name='network'>
 <![CDATA[
-# FIXME: (jeffrey4l) this will raise error when system boot
 rm -rf /etc/udev/rules.d/70-persistent-net.rules
 rm -rf /lib/udev/rules.d/75-persistent-net-generator.rules
 ]]>
+       </command>
+       <command name='clean'>
+yum clean all
        </command>
     </commands>
 </template>
