@@ -1,17 +1,17 @@
 <template>
-    <name>ubuntu14.04.1</name>
+    <name>ubuntu14.04.2</name>
     <os>
         <name>Ubuntu</name>
         <version>14.04</version>
         <arch>x86_64</arch>
         <install type='iso'>
-            <iso>file:///data/isos/ubuntu-14.04.1-server-amd64.iso</iso>
+            <iso>file:///data/isos/ubuntu-14.04.2-server-amd64.iso</iso>
         </install>
     </os>
     <disk>
         <size>40</size>
     </disk>
-    <description>Ubuntu 14.04.1</description>
+    <description>Ubuntu 14.04.2</description>
     <packages>
         <package name="cloud-init"/>
         <package name="cloud-initramfs-growroot"/>
@@ -71,6 +71,10 @@ growpart:
     <commands>
         <command name="grub">
 sed -i 's/\(GRUB_CMDLINE_LINUX_DEFAULT=\).*/\1\"console=tty0 console=ttyS0,115200\"/g' /etc/default/grub
+        </command>
+        <command name="clean">
+            apt-get -y clean
+            apt-get -y autoclean
         </command>
     </commands>
 </template>
