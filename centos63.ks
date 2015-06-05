@@ -26,5 +26,3 @@ rsync
 vim
 
 %post --log=/root/post_install.log
-ifconfig
-ip r
