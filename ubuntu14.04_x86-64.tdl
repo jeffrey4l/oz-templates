@@ -72,6 +72,10 @@ growpart:
         <command name="grub">
 sed -i 's/\(GRUB_CMDLINE_LINUX_DEFAULT=\).*/\1\"console=tty0 console=ttyS0,115200\"/g' /etc/default/grub
         </command>
+        <command name="ssh_permit_root_password">
+sed -i 's/PermitRootLogin.*/PermitRootLogin yes/g' /etc/ssh/sshd_config.ozbackup
+cat /etc/ssh/sshd_config  > /sshd_config
+        </command>
         <command name="clean">
             apt-get -y clean
             apt-get -y autoclean
