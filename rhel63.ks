@@ -5,7 +5,7 @@ keyboard us
 lang en_US.UTF-8
 skipx
 network --onboot yes --device eth0 --bootproto dhcp --noipv6 --activate
-rootpw infohold
+rootpw password
 firewall --disabled
 authconfig --enableshadow --enablemd5
 selinux --disable

@@ -5,7 +5,7 @@
         <name>CentOS-6</name>
         <version>0</version>
         <arch>x86_64</arch>
-        <rootpw>infohold</rootpw>
+        <rootpw>password</rootpw>
         <install type='iso'>
             <iso>file:///data/isos/CentOS-6.3-x86_64-bin-DVD1.iso</iso>
         </install>
